@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -19,4 +21,7 @@ public class Watch {
     @OneToOne
     @JoinColumn (name = "file_id",referencedColumnName = "id")
     private FileCover fileCover;
+
+    @OneToMany(mappedBy = "watch")
+    private List<ChosenWatch> chosenWatches;
 }

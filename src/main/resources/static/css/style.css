@@ -31,21 +31,31 @@ html, body { height: 100%;}
 }
 .card-text{
     width: 15rem;
+    margin-bottom: 5px;
     overflow: hidden;
     display: inline-block;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 .card-img-top{
-    max-width: 20rem;
-    max-height: 20rem;
+    max-width: 10rem;
+    max-height: 10rem; /* Adjust the max-height as per your preference */
+    object-fit: cover; /* Maintain the aspect ratio of the image */
 }
 .footer{
     position: sticky;
     top: 100vh;
 }
 .card{
-    height: 40rem;
+    width: 10rem; /* Adjust the width as per your preference */
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.colored-title {
+    color: #3f5487; /* Adjust the color code as per your preference */
 }
 .table-items{
     display: flex;

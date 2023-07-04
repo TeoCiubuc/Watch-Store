@@ -2,6 +2,7 @@ package com.watch.store.mapper;
 
 import com.watch.store.dto.UserDto;
 import com.watch.store.entity.Role;
+import com.watch.store.entity.ShoppingCart;
 import com.watch.store.entity.User;
 import com.watch.store.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class UserMapper {
         else {
             user.setRoles(List.of(role.get()));
         }
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setUser(user);
+        user.setShoppingCart(shoppingCart);
         return user;
     }
     private Role saveRole(UserDto userDto){
