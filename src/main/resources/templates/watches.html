@@ -9,7 +9,7 @@
 <div id="mainBody">
   <div sec:authorize="hasRole('ADMIN')"
        style="text-align: center; margin: 10px">
-    <a role="button" href="/" th:href="@{/watch}" class="btn btn-primary">Add Watch</a>
+    <a role="button" href="/" th:href="@{/watch}" class="btn btn-primary">Add new item</a>
   </div>
   <table class="table-items">
     <tbody class="items-container">
@@ -22,15 +22,21 @@
           <img class="card-img-top" th:src="@{/img/{id}.jpg(id=${watch.getFileCover().getId()})}"
                alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title" th:text="${watch.getTitle()}"></h5>
-            <p class="card-text">Description: <span th:text="${watch.getDescription()}"></span></p>
-            <p class="card-text">Price: <span th:text="${watch.getPrice()}"></span>$</p>
+            <h5 class="card-title text-center colored-title" th:text="${watch.getTitle()}"></h5>
+            <p class="card-text-center">Description: <span th:text="${watch.getDescription()}"></span></p>
+            <p class="card-text-center">Price: <span th:text="${watch.getPrice()}"></span>$</p>
           </div>
 
 
-          <button style="margin-top: 10px" type="submit"
-                  class="btn btn-primary">Add to Shopping List
-          </button>
+          <form th:object="${chosenWatchDto}" th:action="@{/watch/{watchId}(watchId=${watch.getId()})}"
+                method="post">
+            <label for="quantity">Quantity:</label>
+            <input th:field="*{quantity}" type="number" name="quantity" id="quantity" size="2" maxlength="12"
+                   value="1" title="Quantity:" class="input-text qty">
+            <button style="margin-top: 10px" type="submit"
+                    class="btn btn-primary">Add to Shopping List
+            </button>
+          </form>
         </div>
       </td>
     </tr>
