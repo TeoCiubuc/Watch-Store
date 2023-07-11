@@ -1,35 +1,76 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       th:fragment="layout (mainBody)" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <base href="/" />
+    <base href="/"/>
     <title>Title</title>
 
-    <link rel="stylesheet" th:href="@{/css/style.css}" >
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 </head>
 
 <body>
 
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#"><font color="#667399"><b>Login</b></font></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div class="logo-container">
+        <a href="/watches">
+            <img src="https://cdn.shopify.com/s/files/1/0254/3766/7412/files/Swiss_Watch_Shop_Logo_my_mods_3_7c5dad02-5000-4b29-8471-be120d885f2c_894x.png?v=1613680085" alt="Logo" class="logo">
+        </a>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto" style ="display: flex; justify-content: space-between; width: 100%;">
+            <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/watches"><b>Watches</b> <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/watches">
+                        <i class="fas fa-bars"></i> Watches
+                    </a>
                 </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" href="/cart">Checkout </a>
+                <li class="nav-item">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search in store">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </div>
                 </li>
-
             </ul>
 
+            <ul class="navbar-nav ml-auto">
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link" href="/cart">
+                        <i class="fas fa-map-marker-alt"></i> Track Order
+                    </a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link" href="/cart">
+                        <i class="fas fa-shopping-cart"></i> Checkout
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i> User Panel
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right custom-dropdown-menu" aria-labelledby="profileDropdown">
+                        <a th:href="@{/profile}" sec:authorize="isAuthenticated()" class="dropdown-item">
+                            <i class="fas fa-user"></i> Profile
+                        </a>
+                        <a th:href="@{/logout}" sec:authorize="isAuthenticated()" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                        <a class="dropdown-item" href="" sec:authorize="!isAuthenticated()">
+                            <i class="fas fa-unlock"></i> Login
+                        </a>
+                    </div>
+
+
+
+                </li>
+            </ul>
+
+
+            </ul>
         </div>
     </nav>
 </header>
@@ -47,14 +88,10 @@
         style="background-color: #1c2331; padding: 1rem"
 >
 
-    <!-- Section: Links  -->
     <section class="">
         <div class="text-center text-md-start mt-5">
-            <!-- Grid row -->
             <div class="row mt-3">
-                <!-- Grid column -->
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                    <!-- Content -->
                     <h6 class="text-uppercase fw-bold">About Us</h6>
                     <hr
                             class="mb-4 mt-0 d-inline-block mx-auto"
@@ -63,15 +100,13 @@
                     <p>
                         We are passionate about bringing you the finest collection of timepieces that combine exquisite
                         craftsmanship, elegant design, and exceptional quality.
-                        With a commitment to providing an unmatched shopping experience, we strive to offer a wide selection
+                        With a commitment to providing an unmatched shopping experience, we strive to offer a wide
+                        selection
                         of watches that cater to different tastes and preferences.
                     </p>
                 </div>
-                <!-- Grid column -->
 
-                <!-- Grid column -->
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                    <!-- Links -->
                     <h6 class="text-uppercase fw-bold">Contact Us</h6>
                     <hr
                             class="mb-4 mt-0 d-inline-block mx-auto"
@@ -82,14 +117,12 @@
                     <p><strong>Live Chat:</strong> Available on our website from 9:00 AM to 5:00 PM (GMT)</p>
                     <p><strong>Social Media:</strong>
                         <strong> <font color="#cd486b">Instagram</font> |
-                        <font color="#4c68d7">Facebook</font> </strong></p>
+                            <font color="#4c68d7">Facebook</font> </strong></p>
                 </div>
-                <!-- Grid column -->
             </div>
-            <!-- Grid row -->
+
         </div>
     </section>
-    <!-- Section: Links  -->
 </footer>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

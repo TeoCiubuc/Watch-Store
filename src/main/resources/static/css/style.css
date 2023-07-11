@@ -54,13 +54,108 @@ html, body { height: 100%;}
     justify-content: center;
     align-items: center;
 }
-.colored-title {
-    color: #3f5487; /* Adjust the color code as per your preference */
+.login-text {
+    color: #fff;
+    font-weight: bold;
 }
-.table-items{
+
+.dropdown-menu {
+    background-color: #343a40;
+}
+
+.dropdown-item {
+    color: #f2f2f2;
+}
+
+.dropdown-item:hover {
+    background-color: #343a40;
+}
+.nav-item {
     display: flex;
+    align-items: center;
 }
-.table-row-items{
-    padding-bottom: 5%;
-    padding-right: 5%;
+.logo-container {
+    width: 100%;
+    text-align: center;
 }
+
+.logo {
+    width: 400px;
+    height: 70px;
+}
+.search-box {
+    background: transparent;
+}
+.custom-dropdown-menu {
+    width: 200px;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    width: 400px; /* Adjust the width as per your preference */
+    height: 35px; /* Adjust the height as per your preference */
+}
+
+.search-bar button[type="submit"] {
+    padding: 10px;
+    background-color: #555;
+    border: none;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.search-bar button[type="submit"]:hover {
+    background-color: #333;
+}
+
+.search-bar button[type="submit"]:focus {
+    outline: none;
+}
+
+.search-bar button[type="submit"]:active {
+    background-color: #333;
+}
+.custom-login-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.navbar {
+    padding: 5px 10px;
+    height: 50px;
+}
+.custom-navbar {
+    background-color: #1c2838;
+}
+.navbar-nav .nav-item .nav-link {
+    padding: 0.5rem 1rem;
+    line-height: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,37 +5,27 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
 <section id="mainBody" class="vh-100">
     <div class="login-container">
-        <div style="width: 50%">
-            <img src="https://media.istockphoto.com/id/1281150061/vector/register-account-submit-access-login-password-username-internet-online-website-concept.jpg?s=612x612&w=0&k=20&c=9HWSuA9IaU4o-CK6fALBS5eaO1ubnsM08EOYwgbwGBo="
-                 class="img-fluid" alt="Sample image" style="width: 75%; height: auto;">
+        <div style="width: 60%">
+            <img src="https://media.istockphoto.com/id/1281150061/vector/register-account-submit-access-login-password-username-internet-online-website-concept.jpg?s=612x612&w=0&k=20&c=9HWSuA9IaU4o-CK6fALBS5eaO1ubnsM08EOYwgbwGBo=" width="500" alt="Sample image"/>
         </div>
+
         <div style="width: 30%">
             <div th:if="${param.error}">
                 <div class="alert alert-danger">Invalid Email and Password.</div>
             </div>
 
-            <form
-                    method="post"
-                    th:action="@{/login}"
-                    class="form-horizontal"
-                    role="form"
-            >
+            <form method="post" th:action="@{/login}" class="form-horizontal" role="form">
                 <div class="form-group">
-                    <label for="username">Email address</label>
-                    <input type="email" class="form-control"
-                           id="username"
-                           name="username"
-                           aria-describedby="emailHelp" placeholder="Enter email">
+                    <label for="username"><i class="fas fa-envelope"></i> Email address</label>
+                    <input type="email" class="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control"
-                           id="password"
-                           name="password"
-                           placeholder="Password">
+                    <label for="password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 </div>
 
                 <div class="login">
@@ -43,14 +33,15 @@
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1"> Remember me</label>
                     </div>
-                    <a href="#!" class="text-body">Forgot password?</a>
+                    <a href="#" class="text-body">Forgot password?</a>
                 </div>
 
                 <div style="text-align: center; margin-top: 10px">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-dark"><i class="fas fa-sign-in-alt"></i> Login</button>
                     <p>Don't have an account? <a href="/register" class="link-danger">Register</a></p>
                 </div>
             </form>
+
         </div>
     </div>
 </section>

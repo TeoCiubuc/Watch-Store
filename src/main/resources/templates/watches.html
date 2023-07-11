@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       th:replace="~{template(~{::#mainBody})}" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
 <body>
 <div id="mainBody">
@@ -11,6 +11,7 @@
        style="text-align: center; margin: 10px">
     <a role="button" href="/" th:href="@{/watch}" class="btn btn-primary">Add new item</a>
   </div>
+
   <table class="table-items">
     <tbody class="items-container">
     <tr th:if="${watches.empty}">
