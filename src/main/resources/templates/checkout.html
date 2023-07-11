@@ -21,6 +21,7 @@
                        th:value="${userDetailsDto.fullName}">
               </div>
               <div class="col-md-12 form-group p_star">
+                <label for="address">Address:</label>
                 <input readonly type="text" class="form-control" id="address"
                        th:value="${userDetailsDto.address}">
               </div>
@@ -28,7 +29,6 @@
               <div>
                 <div>
                   <h3>Shipping Details</h3>
-                  <label for="address">Address:</label>
                   <input type="checkbox" id="f-option3" name="selector">
                   <label for="f-option3">Ship to a different address?</label>
                 </div>
