@@ -35,7 +35,9 @@ html, body { height: 100%;}
     overflow: hidden;
     display: inline-block;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 .card-img-top{
     max-width: 10rem;
@@ -58,18 +60,6 @@ html, body { height: 100%;}
     color: #fff;
     font-weight: bold;
 }
-
-.dropdown-menu {
-    background-color: #343a40;
-}
-
-.dropdown-item {
-    color: #f2f2f2;
-}
-
-.dropdown-item:hover {
-    background-color: #343a40;
-}
 .nav-item {
     display: flex;
     align-items: center;
@@ -83,47 +73,8 @@ html, body { height: 100%;}
     width: 400px;
     height: 70px;
 }
-.search-box {
-    background: transparent;
-}
 .custom-dropdown-menu {
     width: 200px;
-}
-.search-bar {
-    display: flex;
-    align-items: center;
-}
-
-.search-bar input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px 0 0 5px;
-    outline: none;
-    width: 400px; /* Adjust the width as per your preference */
-    height: 35px; /* Adjust the height as per your preference */
-}
-
-.search-bar button[type="submit"] {
-    padding: 10px;
-    background-color: #555;
-    border: none;
-    color: #fff;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-}
-
-.search-bar button[type="submit"]:hover {
-    background-color: #333;
-}
-
-.search-bar button[type="submit"]:focus {
-    outline: none;
-}
-
-.search-bar button[type="submit"]:active {
-    background-color: #333;
 }
 .custom-login-button {
     background-color: #333;
@@ -145,6 +96,93 @@ html, body { height: 100%;}
     padding: 0.5rem 1rem;
     line-height: 30px;
 }
+.btn-circle {
+    width: 140px;
+    background-color: #3131ef;
+}
+
+.box {
+    position: relative;
+}
+.input {
+    padding: 10px;
+    width: 50px;
+    height: 40px;
+    background: none;
+    border: 4px solid rgb(8, 115, 133);
+    border-radius: 50px;
+    box-sizing: border-box;
+    font-family: Comic Sans MS;
+    font-size: 15px;
+    color: #ffffff;
+    outline: none;
+    transition: .5s;
+}
+.box:hover input {
+    width: 250px;
+    background: #1c2838;
+    border-radius: 10px;
+}
+.box i {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+    color: rgb(8, 115, 133);
+    transition: .2s;
+}
+.box:hover i {
+    opacity: 0;
+    z-index: -1;
+}
+#ytb {
+    height: 50px;
+    width: fit-content;
+    text-align: center;
+    line-height: 52px;
+    border: 5px solid transparent;
+    color: rgb(8, 115, 133);
+    font-size: 20px;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    /*border-radius: 50%;*/
+    border-color: #087385;
+}
+.stylish-dropdown {
+    display: inline-flex;
+    align-items: center;
+}
+.confirmation-box {
+    background-color: #28a745;
+    color: rgba(255, 255, 255, 0.76);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.confirmation-message {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.confirmation-id {
+    font-size: 17px;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.76);
+    color: #28a745;
+    padding: 3px 8px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+
+
+
+
 
 
 

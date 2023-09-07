@@ -3,19 +3,23 @@ package com.watch.store.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 
 @Entity
 @Getter
 @Setter
-public class FileCover {
+public class ChosenStrap {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String path;
-    @OneToOne(mappedBy = "fileCover")
-    private Watch watch;
-
-    @OneToOne(mappedBy = "fileCover")
+    private Integer chosenQuantity;
+    @ManyToOne
+    @JoinColumn
     private Strap strap;
+    @ManyToOne
+    @JoinColumn
+    private ShoppingCart shoppingCart;
+    @ManyToOne
+    @JoinColumn
+    private CustomerOrder customerOrder;
+
 }

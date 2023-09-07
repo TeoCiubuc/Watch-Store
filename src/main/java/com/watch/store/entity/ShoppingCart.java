@@ -18,4 +18,7 @@ public class ShoppingCart {
     private User user;
     @OneToMany(mappedBy = "shoppingCart")
     private List<ChosenWatch> chosenWatches;
+
+    @OneToMany(mappedBy = "shoppingCart")
+    private List<ChosenStrap> chosenStraps;
 }

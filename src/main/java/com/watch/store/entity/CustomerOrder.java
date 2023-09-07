@@ -19,4 +19,7 @@ public class CustomerOrder {
     private User user;
     @OneToMany(mappedBy = "customerOrder")
     private List<ChosenWatch> watches;
+
+    @OneToMany(mappedBy = "customerOrder")
+    private List<ChosenStrap> straps;
 }

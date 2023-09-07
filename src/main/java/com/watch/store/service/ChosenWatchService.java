@@ -10,6 +10,7 @@ import com.watch.store.repository.WatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,5 +38,13 @@ public class ChosenWatchService {
         Optional<User> user = userRepository.findByEmail(email);
         user.ifPresent(value -> chosenWatch.setShoppingCart(value.getShoppingCart()));
         return chosenWatch;
+    }
+
+    public List<ChosenWatch> getByWatchId(int id){
+        return chosenWatchRepository.findAllByWatchId(id);
+    }
+
+    public void deleteChosenWatch(ChosenWatch chosenWatch){
+        chosenWatchRepository.delete(chosenWatch);
     }
 }

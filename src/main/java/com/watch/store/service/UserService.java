@@ -2,6 +2,7 @@ package com.watch.store.service;
 
 import com.watch.store.dto.UserDetailsDto;
 import com.watch.store.dto.UserDto;
+import com.watch.store.dto.UserUpdateDto;
 import com.watch.store.entity.User;
 import com.watch.store.mapper.UserMapper;
 import com.watch.store.repository.UserRepository;
@@ -29,4 +30,44 @@ public class UserService {
         userDetailsDto.setAddress(user.get().getAddress());
         return userDetailsDto;
     }
+    public UserDto getUserDto(String email){
+        Optional<User> user = userRepository.findByEmail(email);
+        UserDto userDto = new UserDto();
+        userDto.setFullName(user.get().getFullName());
+        userDto.setAddress(user.get().getAddress());
+        userDto.setPassword(user.get().getPassword());
+        userDto.setEmail(user.get().getEmail());
+        return userDto;
+    }
+
+    public void updateUser(UserDto userDto){
+        User user = userRepository.findByFullName(userDto.getFullName());
+        user.setAddress(userDto.getAddress());
+        userRepository.save(user);
+        saveUser(userDto);
+    }
+
+    public void updateUser(UserUpdateDto userUpdateDto){
+        User user = userRepository.findByFullName(userUpdateDto.getFullName());
+        user.setAddress(userUpdateDto.getAddress());
+        user.setPassword(userMapper.encodePassword(userUpdateDto.getPassword()));
+        userRepository.save(user);
+    }
+    public UserDetailsDto getUserDetailsDtoByEmail(String email) {
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        User user = optionalUser.get();
+        UserDetailsDto userDetailsDto = new UserDetailsDto();
+        userDetailsDto.setAddress(user.getAddress());
+        userDetailsDto.setFullName(user.getFullName());
+        return userDetailsDto;
+    }
+
+    public UserUpdateDto getUser(String loggedInUserEmail) {
+        Optional<User> user = userRepository.findByEmail(loggedInUserEmail);
+        return UserUpdateDto.builder()
+                .address(user.get().getAddress())
+                .fullName(user.get().getFullName()).build();
+
+    }
+
 }

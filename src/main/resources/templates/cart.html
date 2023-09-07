@@ -2,69 +2,92 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       th:replace="~{template(~{::#mainBody})}">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/cart.css}" />
 </head>
 <body>
 <div id="mainBody">
 
-
-  <div class="col-25">
-    <div class="container">
-      <h4>Cart
-        <span style="color:black">
-        </span>
-      </h4>
-      <table class="table">
-        <thead>
-        <tr>
-          <th scope="col">Product</th>
-          <th scope="col">Price</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Total</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="watch:${shoppingCartDto.watches}">
-          <td>
-            <div>
-
-              <p th:text="${watch.name}"></p>
-
-            </div>
-          </td>
-          <td>
-            <h5 th:text="${'$'+watch.price}"></h5>
-          </td>
-          <td>
-            <div>
-              <input th:value="${watch.quantity}" readonly type="text" name="qty" id="sst"
-                     maxlength="12" value="1" title="Quantity:"
-              >
-            </div>
-          </td>
-          <td>
-            <h5 th:text="${'$'+watch.total}"></h5>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <hr>
-
-      <div>
-        <h5>Subtotal</h5>
-        <h5 th:text="${'$'+shoppingCartDto.subTotal}"></h5>
-      </div>
-      <hr>
-
-      <div>
-        <a href="/watches">Continue Shopping</a>
-        <a href="/checkout">Proceed to checkout</a>
-      </div>
+    <div class="alert alert-info alert-dismissible fade show text-center mb-30">
+        <span class="alert-close" data-dismiss="alert"></span>
+        <i class="fe-icon-award"></i>&nbsp;&nbsp;With this purchase you will earn <strong>1,549</strong> Reward Points.
     </div>
-    <hr>
 
-  </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered m-0">
+                <thead>
+                <tr>
+                    <th class="text-center py-3 px-4" style="min-width: 400px;">Product Name</th>
+                    <th class="text-right py-3 px-4" style="width: 100px;">Price</th>
+                    <th class="text-center py-3 px-4" style="width: 120px;">Quantity</th>
+                    <th class="text-right py-3 px-4" style="width: 100px;">Subtotal</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="watch : ${shoppingCartDto.watches}">
+                    <td class="p-4">
+                        <div class="media align-items-center">
+                            <div class="media-body">
+                                <a href="#" class="d-block text-dark" th:text="${watch.name}">Product Name</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-right font-weight-semibold align-middle p-4">
+                        <span class="font-weight-medium" th:text="${'&#36;' + watch.price}"></span>
+                    </td>
+                    <td class="align-middle p-4">
+                        <div class="count-input">
+                            <select class="form-control" th:value="${watch.quantity}" readonly>
+                                <option th:text="${watch.quantity}"></option>
+                            </select>
+                        </div>
+                    </td>
+                    <td class="text-right font-weight-semibold align-middle p-4">
+                        <span class="text-xl font-weight-medium" th:text="${'&#36;' + watch.total}"></span>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="d-sm-flex justify-content-between align-items-center text-center text-sm-left">
+        <form class="form-inline py-2">
+            <label class="sr-only">Coupon code</label>
+            <input class="form-control form-control-sm my-2 mr-3" type="text" placeholder="Coupon code" required="">
+            <button class="btn btn-style-1 btn-secondary btn-sm my-2 mx-auto mx-sm-0" type="submit">Apply Coupon</button>
+        </form>
+        <div class="py-2">
+            <div class="d-flex justify-content-between align-items-center">
+        <span class="d-inline-block align-middle text-sm text-muted font-weight-medium">
+            <strong class="total-label">Total:</strong>
+        </span>
+                <span class="d-inline-block align-middle text-xl font-weight-medium total-value" th:text="${'&#36;' + shoppingCartDto.subTotal}"></span>
+            </div>
+            <div class="text-muted font-weight-normal">
+                Includes shipping and taxes
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-between align-items-center pb-4">
+        <a href="/watches" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Continue Shopping</a>
+        <a href="/checkout" class="btn btn-primary">Checkout<span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+
+
+
+
+
+
 </div>
 </body>
 </html>

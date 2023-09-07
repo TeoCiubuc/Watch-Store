@@ -24,7 +24,7 @@ public class CustomerOrderService {
     @Autowired
     ChosenWatchRepository chosenWatchRepository;
 
-    public void addCustomerOrder(String email, String shippingAddress) {
+    public int addCustomerOrder(String email, String shippingAddress) {
         Optional<User> user = userRepository.findByEmail(email);
         CustomerOrder customerOrder = new CustomerOrder();
         customerOrder.setUser(user.get());
@@ -36,5 +36,11 @@ public class CustomerOrderService {
             chosenWatch.setCustomerOrder(customerOrder);
             chosenWatchRepository.save(chosenWatch);
         }
+        return customerOrder.getCustomerOrderId();
+    }
+
+    public CustomerOrder getCustomerOrder(Integer id){
+        CustomerOrder customerOrder = customerOrderRepository.getById(id);
+        return customerOrder;
     }
 }

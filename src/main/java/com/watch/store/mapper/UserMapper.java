@@ -39,6 +39,9 @@ public class UserMapper {
         user.setShoppingCart(shoppingCart);
         return user;
     }
+    public String encodePassword(String password){
+        return passwordEncoder.encode(password);
+    }
     private Role saveRole(UserDto userDto){
         Role role = new Role();
         role.setName(userDto.getUserRole());

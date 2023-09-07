@@ -1,23 +1,24 @@
 package com.watch.store.controller;
 
-import com.watch.store.dto.ChosenWatchDto;
-import com.watch.store.dto.ShoppingCartDto;
-import com.watch.store.dto.UserDetailsDto;
-import com.watch.store.dto.WatchDto;
+import com.watch.store.dto.*;
 import com.watch.store.entity.ChosenWatch;
+import com.watch.store.entity.CustomerOrder;
+import com.watch.store.entity.User;
 import com.watch.store.entity.Watch;
 import com.watch.store.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.naming.Binding;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 
@@ -115,9 +116,48 @@ public class WatchController {
     }
 
     @PostMapping("/sendOrder")
-    public String sendOrder(@ModelAttribute("UserDetailsDto") UserDetailsDto userDetailsDto) {
+    public String sendOrder(@ModelAttribute("UserDetailsDto") UserDetailsDto userDetailsDto, Model model) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        customerOrderService.addCustomerOrder(email, userDetailsDto.getShippingAddress());
+        int id = customerOrderService.addCustomerOrder(email, userDetailsDto.getShippingAddress());
+        model.addAttribute("id",id);
         return "confirmation";
+    }
+    @GetMapping("/user")
+    public String getUser(Model model){
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserDto userDto = userService.getUserDto(email);
+        model.addAttribute("userDto", userDto);
+        return "user";
+    }
+
+    @GetMapping("/track")
+    public String getTrack(Model model){
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserDto userDto = userService.getUserDto(email);
+        model.addAttribute("userDto", userDto);
+        return "track";
+    }
+
+    @GetMapping("/trackOrder")
+    public String getTrack(@RequestParam("id") String id, Model model){
+        Integer idTrack = Integer.parseInt(id);
+        CustomerOrder customerOrder = customerOrderService.getCustomerOrder(idTrack);
+        User user = customerOrder.getUser();
+        model.addAttribute("Id", id);
+        model.addAttribute("Name",user.getFullName());
+        model.addAttribute("Address",user.getAddress());
+        model.addAttribute("Status", "Processed");
+        return "track";
+    }
+
+    @RequestMapping("/watch/delete")
+    public String deleteWatch(@RequestParam("watchId") int id){
+        Optional<Watch> watch = watchService.getWatchById(id);
+        List<ChosenWatch> chosenWatches = chosenWatchService.getByWatchId(watch.get().getId());
+        for(ChosenWatch chosenWatch : chosenWatches){
+        chosenWatchService.deleteChosenWatch(chosenWatch);
+        }
+        watchService.deleteWatch(id);
+        return "redirect:/watches";
     }
 }
